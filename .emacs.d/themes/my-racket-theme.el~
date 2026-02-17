@@ -1,0 +1,45 @@
+(deftheme my-racket
+
+  
+  "A high-contrast dark theme ported from the Rasputin Custom Racket theme.")
+
+(let ((bg      "#3C3C3C") ; framework:basic-canvas-background
+      (fg      "#FFFFFF") ; framework:default-text-color
+      (keyword "#48A4FF") ; framework:syntax-color:scheme:keyword
+      (string  "#FF00FF") ; framework:syntax-color:scheme:string
+      (comment "#C29E1F") ; framework:syntax-color:scheme:comment
+      (const   "#FF80C0") ; framework:syntax-color:scheme:constant / REPL value
+      (symbol  "#0BC1C1") ; framework:syntax-color:scheme:symbol
+      (h-key   "#FF0080") ; framework:syntax-color:scheme:hash-colon-keyword
+      (error   "#FF8080") ; framework:syntax-color:scheme:error
+      (paren   "#0096FF") ; framework:syntax-color:scheme:parenthesis
+      (match   "#C0C0C0")) ; framework:paren-match-color
+
+  (custom-theme-set-faces
+   'rasputin-custom
+   ;; Basic UI
+   `(default ((t (:background ,bg :foreground ,fg))))
+   `(cursor ((t (:background "#FFFFFF"))))
+   `(region ((t (:background "#555555"))))
+   
+   ;; Syntax Highlighting (Font Lock)
+   `(font-lock-keyword-face ((t (:foreground ,keyword :weight bold))))
+   `(font-lock-string-face ((t (:foreground ,string))))
+   `(font-lock-comment-face ((t (:foreground ,comment :slant italic :weight bold))))
+   `(font-lock-constant-face ((t (:foreground ,const))))
+   `(font-lock-variable-name-face ((t (:foreground ,symbol))))
+   `(font-lock-function-name-face ((t (:foreground ,keyword :weight bold))))
+   `(font-lock-type-face ((t (:foreground ,symbol))))
+   `(font-lock-builtin-face ((t (:foreground ,h-key))))
+   `(font-lock-warning-face ((t (:foreground ,error :weight bold))))
+   
+   ;; Parentheses (Matches Racket's specific paren color)
+   `(show-paren-match ((t (:background ,match :foreground "#000000"))))
+   `(parenthesis ((t (:foreground ,paren))))))
+
+;;;###autoload
+(when (and (boundp 'custom-theme-load-path) load-file-name)
+  (add-to-list 'custom-theme-load-path
+               (file-name-directory load-file-name)))
+
+(provide-theme 'rasputin-custom)
