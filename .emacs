@@ -11,13 +11,18 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(display-line-numbers-type 'relative)
  '(package-selected-packages '(ample-theme racket-mode)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
 
 (setq racket-program "C:\\Program Files\\Racket\\racket.exe")
 
+(scroll-bar-mode 0)
+(global-display-line-numbers-mode)
+(set-face-attribute 'default nil :height 150)
+
+(with-eval-after-load 'frame
+  (custom-set-faces
+   '(region ((t (:background "#fffacd" 
+                 :foreground "#000000" 
+                 :inverse-video nil 
+                 :inherit nil))))))
