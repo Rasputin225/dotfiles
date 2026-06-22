@@ -15,6 +15,19 @@
 
   (custom-theme-set-faces
    'rasputin-custom
+   
+					; The standard line numbers
+   
+   
+   ;; The CURRENT line number
+   '(line-number-current-line ((t (:inherit line-number 
+					    :foreground "#fffacdf"  
+					    :weight bold))))
+   
+   '(region ((t (:background "#a19e87" 
+			     :foreground "#000000" 
+			     :inverse-video nil 
+			     :inherit nil))))
    `(default ((t (:background ,bg :foreground ,fg))))
    `(font-lock-keyword-face ((t (:foreground ,keyword :weight bold))))
    `(font-lock-string-face ((t (:foreground ,string))))

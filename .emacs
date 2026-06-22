@@ -1,5 +1,8 @@
 (menu-bar-mode 0)
 (tool-bar-mode 0)
+(column-number-mode 1)
+(ido-mode 1)
+(ido-everywhere 1)
 ;; Use forward slashes for Windows paths!
 (add-to-list 'custom-theme-load-path "c:/Users/Eigenaar/AppData/Roaming/.emacs.d/themes/")
 
@@ -12,7 +15,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(display-line-numbers-type 'relative)
- '(package-selected-packages '(ample-theme racket-mode)))
+ '(package-selected-packages '(ample-theme helm-smex omnisharp racket-mode smex)))
 
 (setq racket-program "C:\\Program Files\\Racket\\racket.exe")
 
@@ -20,12 +23,7 @@
 (global-display-line-numbers-mode)
 (set-face-attribute 'default nil :height 150)
 
-(with-eval-after-load 'frame
-  (custom-set-faces
-   '(region ((t (:background "#fffacd" 
-                 :foreground "#000000" 
-                 :inverse-video nil 
-                 :inherit nil))))))
+
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
@@ -35,3 +33,38 @@
 ;; (add-to-list 'package-archives
 ;;              '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (package-initialize)
+;;automatically use omnnisharpe for c# files
+
+(add-hook 'csharp-mode-hook 'omnisharp-mode)
+;;auto complretion for c# mode
+
+(eval-after-load
+ 'company
+ '(add-to-list 'company-backends 'company-omnisharp))
+
+(add-hook 'csharp-mode-hook #'company-mode)
+;; add fly check
+(add-hook 'csharp-mode-hook #'flycheck-mode)
+
+
+
+;; Adding `/path/to/simpc` to load-path so `require` can find it
+(add-to-list 'load-path "C:/Users/Eigenaar/AppData/Roaming/.emacs.d/simpc/")
+;; (load "C:/Users/Eigenaar/AppData/Roaming/.emacs.d/simpc/simpc-mode.el")
+
+;; Importing simpc-mode
+(require 'simpc-mode)
+;; Automatically enabling simpc-mode on files with extensions like .h, .c, .cpp, .hpp
+(add-to-list 'auto-mode-alist '("\\.[hc]\\(pp\\)?\\'" . simpc-mode))
+
+(load "C:/Users/Eigenaar/AppData/Roaming/.emacs.d/cformat/clang-format.el")
+(global-set-key [C-M-x-tab] 'clang-format-region)
+
+
+(require 'smex) ; Not needed if you use package.el
+(smex-initialize) ; Can be omitted. This might cause a (minimal) delay
+					; when Smex is auto-initialized on its first run.
+(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "M-X") 'smex-major-mode-commands)
+;; This is your old M-x.
+(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
