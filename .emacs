@@ -68,3 +68,22 @@
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
 ;; This is your old M-x.
 (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+
+(defun my-compile-cpp ()
+  "Compile the current C++ file with g++ using its base name."
+  (interactive)
+  (let* ((file (file-name-nondirectory buffer-file-name))
+         (base (file-name-sans-extension file))
+	 (compile-command (format "g++ %s -o %s -std=c++17 -Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion -Werror" file base)))
+    (compile compile-command)))
+
+;; Bind it to a convenient key, like F5
+(global-set-key (kbd "<f5>") 'my-compile-cpp)
+
+
+
+
+
+
+
+
