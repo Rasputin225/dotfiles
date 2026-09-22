@@ -3,7 +3,7 @@
 (column-number-mode 1)
 (ido-mode 1)
 (ido-everywhere 1)
-;; Use forward slashes for Windows paths!
+
 (add-to-list 'custom-theme-load-path "c:/Users/Eigenaar/AppData/Roaming/.emacs.d/themes/")
 
 ;; The 't' at the end tells Emacs to "confirm" the theme automatically
@@ -56,9 +56,9 @@
 (require 'simpc-mode)
 ;; Automatically enabling simpc-mode on files with extensions like .h, .c, .cpp, .hpp
 (add-to-list 'auto-mode-alist '("\\.[hc]\\(pp\\)?\\'" . simpc-mode))
-
+;;quick reformat using clang
 (load "C:/Users/Eigenaar/AppData/Roaming/.emacs.d/cformat/clang-format.el")
-(global-set-key [C-M-x-tab] 'clang-format-region)
+(global-set-key (kbd "C-M-x-tab") 'clang-format-region)
 
 
 (require 'smex) ; Not needed if you use package.el

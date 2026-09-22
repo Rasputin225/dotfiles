@@ -1,0 +1,25 @@
+
+;; ----- smex-history -----
+(
+ dired
+ shell
+ rename-file
+ replace-string
+ eww
+ help
+ comint-run
+)
+
+;; ----- smex-data -----
+(
+ (compile . 30)
+ (dired . 42)
+ (shell . 26)
+ (shell-command . 1)
+ (comint-run . 9)
+ (file-cache-add-file . 1)
+ (help . 1)
+ (eww . 1)
+ (replace-string . 3)
+ (rename-file . 1)
+)
