@@ -74,7 +74,7 @@
   (interactive)
   (let* ((file (file-name-nondirectory buffer-file-name))
          (base (file-name-sans-extension file))
-	 (compile-command (format "g++ %s -o %s -std=c++17 -Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion -Werror" file base)))
+	 (compile-command (format "g++ %s -o %s.exe -std=c++17 -Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion -Werror" file base)))
     (compile compile-command)))
 
 ;; Bind it to a convenient key, like F5
